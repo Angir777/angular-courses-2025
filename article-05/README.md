@@ -1,2 +1,2 @@
-# KursAngular05
+# 05 - Component Lifecycle in Angular
 
