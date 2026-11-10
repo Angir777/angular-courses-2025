@@ -1,1 +1,1 @@
-# kurs-angular-12
+# 12 - Communication between components in Angular

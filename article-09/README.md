@@ -1,1 +1,1 @@
-# kurs-angular-09
+# 09 - Handling REST API in Angular
