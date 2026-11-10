@@ -1,0 +1,8 @@
+<p>one works!</p>
+
+@if (isLoading()) {
+    Loading...
+} @else {
+    <p>{{ data() | json }}</p>
+    <p>{{ message() }}</p>
+}

@@ -1,0 +1,4 @@
+{
+  "appName": "Angular APP PL",
+  "hello": "Witaj {{user}}!"
+}

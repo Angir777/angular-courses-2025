@@ -1,0 +1,93 @@
+<form [formGroup]="form" class="container mt-4">
+  <div class="row">
+    <div class="col-lg-12 col-12">
+      <div class="form-group">
+        <label for="author" class="form-label">Author*</label>
+        <input 
+          class="form-control form-control-sm" 
+          [ngClass]="{
+            'is-invalid': form.get('author')?.invalid && form.get('author')?.touched,
+            'is-valid': form.get('author')?.valid && form.get('author')?.touched
+          }"
+          id="author" 
+          type="text"
+          formControlName="author" />
+        <div class="invalid-feedback">Author is required.</div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+    </div>
+    <div class="col-lg-12 col-12">
+      <div class="form-group row">
+        <div class="col-md-12 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mt-2">
+          <label class="col-form-label">List*</label>
+          <button
+            type="button"
+            class="btn btn-success btn-sm btn-rwd"
+            (click)="additionalItem()">
+            Add
+          </button>
+        </div>
+        <div class="col-md-12">
+          <div class="row">
+            @if (itemsGroupArray.length > 0) {
+              <div class="col-md-12 mb-4" formArrayName="itemsGroup">
+                @for (item of itemsGroupArray.controls; track item; let i = $index) {
+                  <div class="row" [formGroupName]="i">
+                    <!-- Index -->
+                    <div class="col-12 col-md-1">
+                      <label class="col-form-label">&nbsp;</label>
+                      <div>
+                        {{ i + 1 }}
+                      </div>
+                    </div>
+                    <!-- Name -->
+                    <div class="col-12 col-md-10">
+                      <div class="form-group">
+                        <label class="col-form-label">Name*</label>
+                        <input
+                          class="form-control form-control-sm"
+                          [ngClass]="{
+                            'is-invalid': form.get('itemsGroup.' + i + '.name')?.invalid && form.get('itemsGroup.' + i + '.name')?.touched,
+                            'is-valid': form.get('itemsGroup.' + i + '.name')?.valid && form.get('itemsGroup.' + i + '.name')?.touched
+                          }"
+                          id="name"
+                          type="text"
+                          formControlName="name" />
+                        <div class="invalid-feedback">Name is required.</div>
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                    <!-- Action -->
+                    <div class="col-12 col-md-1">
+                      <label class="col-form-label">&nbsp;</label>
+                      <div>
+                        <button 
+                          type="button" 
+                          class="btn btn-danger btn-sm btn-rwd" 
+                          (click)="deleteGroupItem(i)">
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+            @if (itemsGroupArray.length <= 0) {
+              <div class="col-md-12">
+                <div class="alert alert-warning p-2 mt-4 text-center" role="alert">
+                  No items added!
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary" (click)="onSubmit()">Send</button>
+    </div>
+  </div>
+</form>

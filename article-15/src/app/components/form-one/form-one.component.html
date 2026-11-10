@@ -1,0 +1,52 @@
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" class="container mt-4">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name*</label>
+    <input
+      id="name"
+      name="name"
+      [(ngModel)]="user.name"
+      required
+      minlength="3"
+      class="form-control"
+      #name="ngModel"
+      [class.is-invalid]="name.invalid && name.touched" />
+      @if (name.invalid && name.touched) {
+        <div class="invalid-feedback">Name is required (min. 3 characters).</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email*</label>
+      <input
+        id="email"
+        name="email"
+        [(ngModel)]="user.email"
+        required
+        email
+        class="form-control"
+        #email="ngModel"
+        [class.is-invalid]="email.invalid && email.touched" />
+        @if (email.invalid && email.touched) {
+          <div class="invalid-feedback">Please enter a valid email.</div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="age" class="form-label">Age*</label>
+        <input
+          id="age"
+          name="age"
+          type="number"
+          [(ngModel)]="user.age"
+          required
+          min="18"
+          class="form-control"
+          #age="ngModel"
+          [class.is-invalid]="age.invalid && age.touched" />
+          @if (age.invalid && age.touched) {
+            <div class="invalid-feedback">Age must be at least 18 years.</div>
+          }
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Send</button>
+      </form>

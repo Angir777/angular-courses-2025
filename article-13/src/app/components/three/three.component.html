@@ -1,0 +1,30 @@
+<p>three works!</p>
+
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <label>Search GitHub user:</label>
+            <ng-select
+                [items]="users$ | async"
+                [searchable]="true"
+                [hideSelected]="true"
+                [closeOnSelect]="true"
+                [bindLabel]="'login'"
+                [(ngModel)]="selectedUserItem"
+                [multiple]="false"
+                [ngModelOptions]="{ standalone: true }"
+                [loading]="isLoadingUsers()"
+                [typeahead]="usersInput$"
+                placeholder="Enter a username">
+                <ng-template ng-label-tmp let-item="item">
+                    <img [src]="item.avatar_url" width="20" height="20" class="rounded-circle me-2">
+                    {{ item.login }}
+                  </ng-template>
+                <ng-template ng-option-tmp let-item="item">
+                    <img [src]="item.avatar_url" width="20" height="20" class="rounded-circle me-2">
+                    {{ item.login }}
+                </ng-template>
+            </ng-select>
+        </div>
+    </div>
+</div>

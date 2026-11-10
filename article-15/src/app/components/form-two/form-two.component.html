@@ -1,0 +1,47 @@
+<form [formGroup]="form" class="container mt-4">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name*</label>
+        <input 
+            class="form-control" 
+            [ngClass]="{
+                'is-invalid': form.get('name')?.invalid && form.get('name')?.touched,
+                'is-valid': form.get('name')?.valid && form.get('name')?.touched
+            }"
+            id="name" 
+            formControlName="name" />
+        <div class="invalid-feedback">Name is required (min. 3 characters).</div>
+        <div class="valid-feedback">Looks good!</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email*</label>
+        <input 
+            class="form-control" 
+            [ngClass]="{
+                'is-invalid': form.get('email')?.invalid && form.get('email')?.touched,
+                'is-valid': form.get('email')?.valid && form.get('email')?.touched
+            }"
+            id="email" 
+            formControlName="email" />
+        <div class="invalid-feedback">Please enter a valid email.</div>
+        <div class="valid-feedback">Looks good!</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="age" class="form-label">Age*</label>
+        <input 
+            class="form-control" 
+            [ngClass]="{
+                'is-invalid': form.get('age')?.invalid && form.get('age')?.touched,
+                'is-valid': form.get('age')?.valid && form.get('age')?.touched
+            }" 
+            id="age" 
+            type="number" 
+            formControlName="age" />
+        <div class="invalid-feedback">Age must be at least 18 years.</div>
+        <div class="valid-feedback">Looks good!</div>
+    </div>
+
+    <!-- You can also add '[disabled]="form.invalid"' -->
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Send</button>
+</form>
